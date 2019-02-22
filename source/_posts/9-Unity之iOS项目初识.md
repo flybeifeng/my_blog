@@ -118,6 +118,8 @@ UnitySendMessage("GameObjectName", "MethodName", "Message");
 当 Untiy 代码有更新之后，需要重新打包导出项目，此时旧项目已经有了 iOS 端代码，直接覆盖显然不合适，只需要替换部分文件即可。
 > 需要替换的文件为 **MapFileParser**， **MapFileParser.sh**，**data**，**Libraries**，**Classes/Native**
 
+> 其中 **Classes/Native** 文件需要以导入的方式替换
+
 ![changed_dir](changed_dir.png)
 
 > **注意**
@@ -157,7 +159,6 @@ void Start () {
 ```C
 typedef void(*monoCallback)(const char* str);
 extern "C" {
-    typedef void(*monoCallback)(const char* str);
     void SetLibCallback(monoCallback callback);
     void CallTest();
 }
